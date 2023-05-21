@@ -1,0 +1,89 @@
+body{
+    /* centering the main nav wrapper */
+    display: grid;
+    height: 100vh;
+    place-items: center;
+    background: linear-gradient(135deg, #93f8af, #e5cc4e);
+}
+
+.nav_wrapper{
+    width: min(90vw, 600px); /*90vm in smaller screens and 500px in bigger screens*/
+    background-color: #013445;
+    border-radius: max(5vw, 3rem);
+    display: flex;
+    justify-content: space-evenly;
+    aspect-ratio: 6.4; /*width will bw 6.4 times the height*/
+}
+
+.icons_wrapper{
+    position: relative; /*will be used in the ::after pseudo element*/
+    height: 100%;
+    padding-top: 10px;
+
+    /*to center the icons*/
+    display: grid;
+    place-items: center;
+}
+
+/*Syling of the icons*/
+i{
+    font-size: min(10vw, 3rem); /* gets 10vw in smaller screens and 3rem in bigger screens*/
+    color: #80ed99;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/*The blue bg that goes with the icon when hovered*/
+i::before{
+    content: "";
+    padding: 2vw;
+    border-radius: 50%;
+    background-color: #013445;
+}
+/*the horizontal line below teh hovered element*/
+
+
+/*we need an extra container for the overflow to be hidden but the icons should appear even when overflowed.*/
+.bottom_lne::after{
+    content: "";
+    position: absolute;
+    width: 30%;
+    height: min(1vw, 5px);
+    border-radius: 5px;
+    bottom: -1vw;/*Out of hte container and thus hidden*/
+    background-color: #80ed99;
+
+    /*To center it in the bottom*/
+    left: 50%;
+    translate: -50% 0;
+
+    /*For the animation*/
+    transition: 0.15s ease-out;
+    opacity: 0;
+    z-index: 3;/*To present the line from covered by the background of icons*/
+}
+
+.bottom_line{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+i.hover, .icons_wrapper:hover{
+    cursor: pointer;
+}
+
+/*Bottom line animation*/
+i.hover, .icon_wrapper:hover .bottom_line::after{
+    bottom: 2vw;
+    opacity: 1;
+}
+
+/*Main hover effect for the icons*/
+i:hover, .icons_wrapper:hover > i{
+    margin-top: -65%;
+    scale: 1.2;
+    color: #e54360;
+}
